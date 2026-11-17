@@ -19,7 +19,7 @@ Targets: **HumanEval** (164 tasks) and **MBPP** (378 tasks). For each, it audits
 
 95% Wilson intervals are in parentheses.
 
-Full tables: [`results/FINDINGS.md`](results/FINDINGS.md). Write-up: [`WRITEUP.md`](WRITEUP.md).
+Full tables: [`results/FINDINGS.md`](results/FINDINGS.md). Write-up: [`WRITEUP.md`](WRITEUP.md). Reported upstream: [evalplus#333](https://github.com/evalplus/evalplus/issues/333), [#334](https://github.com/evalplus/evalplus/issues/334), [#335](https://github.com/evalplus/evalplus/issues/335), [#336](https://github.com/evalplus/evalplus/issues/336).
 
 ## What it does
 

@@ -1,6 +1,13 @@
 # Draft upstream reports for evalplus/evalplus
 
-DRAFTS, NOT FILED. Review each one, reproduce it on a clean Linux box, then file it by hand.
+Filed 2026-11-17 after reproducing on Linux. These are the original drafts; the filed issues carry final numbers.
+
+| # | Issue |
+|---|---|
+| 1 | Untrusted solution reads `expected` / controls `==`: https://github.com/evalplus/evalplus/issues/333 |
+| 2 | HumanEval/32 `find_zero`: https://github.com/evalplus/evalplus/issues/334 |
+| 3 | Timeouts reported as wrong answers: https://github.com/evalplus/evalplus/issues/335 |
+| 4 | Degenerate MBPP+ plus suites: https://github.com/evalplus/evalplus/issues/336 |
 
 ---
 

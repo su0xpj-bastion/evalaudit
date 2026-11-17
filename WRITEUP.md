@@ -132,7 +132,7 @@ The cost is one extra pickle round-trip per task.
 - Function-level Python benchmarks only.
 - "Confirmed wrong" relies on EvalPlus's plus-suite ground truth, which is itself imperfect (finding 4).
 - Primary run: macOS, 8 cores, Python 3.14. RLIMIT_AS is disabled through EvalPlus's documented opt-out because macOS rejects it.
-- **Reproduced on Linux** (GitHub Actions ubuntu-latest, 4 cores, Python 3.12, EvalPlus's 4 GB RLIMIT_AS sandbox on), results in `results/linux/`. Cheater rates and official pass@1, HumanEval/32, and the degenerate suites are identical on both. Load-induced `fail` verdicts reproduce too, on a partly different set of tasks, as expected for a timing effect.
+- **Reproduced on Linux** (GitHub Actions ubuntu-latest, 4 cores, Python 3.12, EvalPlus's 4 GB RLIMIT_AS sandbox on), results in `results/linux/`. Cheater rates and official pass@1, mutation results, HumanEval/32, the degenerate suites, and the hardened grader's verdicts are identical on both. Load-induced `fail` verdicts reproduce too, on a partly different set of tasks, as expected for a timing effect.
 - The cheaters show a grader design flaw. I don't claim any published score was obtained this way.
 
 Reproduce everything with `evalaudit all` (about 5 minutes) and `python scripts/verify_official_cli.py`.
