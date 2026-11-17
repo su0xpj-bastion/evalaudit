@@ -30,13 +30,24 @@ jobs:
       - run: pip install -e ".[dev]"
       - name: Machine
         run: nproc; free -g; python --version; pip show evalplus | head -2
-      - name: Audit
-        run: evalaudit all --workers "$(nproc)" --out results/linux
+      - name: Cheaters + mutation
+        run: |
+          evalaudit exploits --workers "$(nproc)" --out results/linux
+          evalaudit mutation --workers "$(nproc)" --out results/linux
+          evalaudit report --out results/linux
+      - name: Reliability under load (2x workers per core)
+        timeout-minutes: 30
+        continue-on-error: true
+        run: |
+          evalaudit reliability --workers "$(nproc)" --repeats 3 --out results/linux
+          evalaudit report --out results/linux
       - name: Official EvalPlus entry point
+        if: always()
         env:
           EVALAUDIT_OFFICIAL_OUT: results/linux/official_cli
         run: python scripts/verify_official_cli.py 2>&1 | grep -E "===|tests\)|pass@1" | tee results/linux/official_cli.txt
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: results-linux
           path: |
