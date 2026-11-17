@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import multiprocessing
 import os
+import sys
 from concurrent.futures import ProcessPoolExecutor
 from dataclasses import dataclass
 
@@ -26,8 +27,10 @@ def use_fork() -> None:
     # macOS defaults to spawn, which re-imports __main__ and is ~10x slower per
     # check. The graders are fork-safe (no threads before fork).
     multiprocessing.set_start_method("fork", force=True)
-    # macOS rejects RLIMIT_AS; EvalPlus's documented opt-out is -1.
-    os.environ.setdefault("EVALPLUS_MAX_MEMORY_BYTES", "-1")
+    # macOS rejects RLIMIT_AS; EvalPlus's documented opt-out is -1. On Linux
+    # EvalPlus's default 4 GB address-space limit stays in force.
+    if sys.platform == "darwin":
+        os.environ.setdefault("EVALPLUS_MAX_MEMORY_BYTES", "-1")
 
 
 def _run(job: Job) -> dict:

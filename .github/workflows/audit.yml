@@ -1,0 +1,45 @@
+name: audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - run: pytest -q
+
+  full-audit:
+    # Full reproduction on Linux with EvalPlus's default RLIMIT_AS sandbox.
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - name: Machine
+        run: nproc; free -g; python --version; pip show evalplus | head -2
+      - name: Audit
+        run: evalaudit all --workers "$(nproc)" --out results/linux
+      - name: Official EvalPlus entry point
+        env:
+          EVALAUDIT_OFFICIAL_OUT: results/linux/official_cli
+        run: python scripts/verify_official_cli.py 2>&1 | grep -E "===|tests\)|pass@1" | tee results/linux/official_cli.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: results-linux
+          path: |
+            results/linux/*.md
+            results/linux/*.json
+            results/linux/official_cli.txt

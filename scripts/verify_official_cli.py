@@ -13,10 +13,11 @@ from evalaudit.exploits import EXPLOITS
 ENCODING = "utf-8"
 
 if __name__ == "__main__":
-    os.environ.setdefault("EVALPLUS_MAX_MEMORY_BYTES", "-1")
+    if sys.platform == "darwin":  # macOS rejects RLIMIT_AS
+        os.environ.setdefault("EVALPLUS_MAX_MEMORY_BYTES", "-1")
     from evalplus.evaluate import evaluate
 
-    out = Path("results/official_cli")
+    out = Path(os.environ.get("EVALAUDIT_OFFICIAL_OUT", "results/official_cli"))
     out.mkdir(parents=True, exist_ok=True)
     for bench in sys.argv[1:] or ["humaneval", "mbpp"]:
         for name in ("null", "hybrid"):
