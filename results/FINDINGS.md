@@ -26,18 +26,18 @@ Every row is a solution that never attempts the task. Any PASS is a false pass.
 
 ## 2. Grader mutation testing
 
-One-edit mutants of the reference solution. **Confirmed wrong** = the mutant fails EvalPlus's plus suite (a concrete input where it disagrees with ground truth). Mutants that pass every suite are *not* counted (may be equivalent).
+One-edit mutants of the reference solution. **Confirmed wrong** = on EvalPlus's base+plus inputs the mutant returns a wrong value or raises (hardened grader; timeouts are not counted as wrong). Mutants that pass every suite are *not* counted (may be equivalent).
 
 | Benchmark | Grader | Mutants | Accepted | Accepted & confirmed wrong | Tasks accepting a confirmed-wrong mutant |
 |---|---|---|---|---|---|
-| HumanEval | original asserts | 1685 | 205 | 99 | 36/164 = 22.0% (95% CI 16.3-28.9) |
-| HumanEval | EvalPlus base | 1685 | 202 | 95 | 35/164 = 21.3% (95% CI 15.8-28.2) |
-| MBPP | original asserts | 1959 | 394 | 220 | 70/378 = 18.5% (95% CI 14.9-22.7) |
-| MBPP | EvalPlus base | 1959 | 394 | 220 | 70/378 = 18.5% (95% CI 14.9-22.7) |
+| HumanEval | original asserts | 1685 | 205 | 98 | 36/164 = 22.0% (95% CI 16.3-28.9) |
+| HumanEval | EvalPlus base | 1685 | 202 | 94 | 35/164 = 21.3% (95% CI 15.8-28.2) |
+| MBPP | original asserts | 1959 | 394 | 218 | 69/378 = 18.3% (95% CI 14.7-22.5) |
+| MBPP | EvalPlus base | 1959 | 394 | 218 | 69/378 = 18.3% (95% CI 14.7-22.5) |
 
 ### Examples: wrong solutions both shipped graders accept
 
-**HumanEval/0** (`cmp:0@28`), passes original asserts and EvalPlus base, fails EvalPlus plus:
+**HumanEval/0** (`cmp:0@28`), passes original asserts and EvalPlus base, but returns a wrong value on an EvalPlus input:
 
 ```diff
 --- reference
@@ -49,7 +49,7 @@ One-edit mutants of the reference solution. **Confirmed wrong** = the mutant fai
              return True
 ```
 
-**HumanEval/19** (`int-1@38`), passes original asserts and EvalPlus base, fails EvalPlus plus:
+**HumanEval/19** (`int-1@38`), passes original asserts and EvalPlus base, but returns a wrong value on an EvalPlus input:
 
 ```diff
 --- reference
@@ -61,7 +61,7 @@ One-edit mutants of the reference solution. **Confirmed wrong** = the mutant fai
      if numbers == '':
 ```
 
-**HumanEval/20** (`cmp:0@42`), passes original asserts and EvalPlus base, fails EvalPlus plus:
+**HumanEval/20** (`cmp:0@42`), passes original asserts and EvalPlus base, but returns a wrong value on an EvalPlus input:
 
 ```diff
 --- reference
@@ -73,7 +73,7 @@ One-edit mutants of the reference solution. **Confirmed wrong** = the mutant fai
              min_diff = diff
 ```
 
-**HumanEval/31** (`int+1@23`), passes original asserts and EvalPlus base, fails EvalPlus plus:
+**HumanEval/31** (`int+1@23`), passes original asserts and EvalPlus base, but returns a wrong value on an EvalPlus input:
 
 ```diff
 --- reference

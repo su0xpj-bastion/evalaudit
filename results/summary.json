@@ -133,7 +133,7 @@
     "humaneval/original": {
       "mutants": 1685,
       "accepted": 205,
-      "confirmed_wrong": 99,
+      "confirmed_wrong": 98,
       "tasks_with_wrong_accepted": 36,
       "n_tasks": 164,
       "task_ids": [
@@ -178,7 +178,7 @@
     "humaneval/base": {
       "mutants": 1685,
       "accepted": 202,
-      "confirmed_wrong": 95,
+      "confirmed_wrong": 94,
       "tasks_with_wrong_accepted": 35,
       "n_tasks": 164,
       "task_ids": [
@@ -223,8 +223,8 @@
     "mbpp/original": {
       "mutants": 1959,
       "accepted": 394,
-      "confirmed_wrong": 220,
-      "tasks_with_wrong_accepted": 70,
+      "confirmed_wrong": 218,
+      "tasks_with_wrong_accepted": 69,
       "n_tasks": 378,
       "task_ids": [
         "Mbpp/100",
@@ -276,7 +276,6 @@
         "Mbpp/66",
         "Mbpp/68",
         "Mbpp/69",
-        "Mbpp/71",
         "Mbpp/72",
         "Mbpp/721",
         "Mbpp/722",
@@ -302,8 +301,8 @@
     "mbpp/base": {
       "mutants": 1959,
       "accepted": 394,
-      "confirmed_wrong": 220,
-      "tasks_with_wrong_accepted": 70,
+      "confirmed_wrong": 218,
+      "tasks_with_wrong_accepted": 69,
       "n_tasks": 378,
       "task_ids": [
         "Mbpp/100",
@@ -355,7 +354,6 @@
         "Mbpp/66",
         "Mbpp/68",
         "Mbpp/69",
-        "Mbpp/71",
         "Mbpp/72",
         "Mbpp/721",
         "Mbpp/722",

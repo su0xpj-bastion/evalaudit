@@ -37,10 +37,17 @@ def mutation_experiment(
     print(f"[mutation] phase 1: {len(sources)} mutants, {len(jobs)} jobs")
     rows = run_jobs(jobs, workers)
 
-    # Phase 2: oracle (EvalPlus plus suite) only for mutants some grader accepted.
+    # Phase 2: oracles, only for mutants some grader accepted. "Confirmed wrong"
+    # uses the hardened grader on the same base+plus inputs, because it reports a
+    # per-input timeout as `timeout`; EvalPlus plus reports it as `fail`, which
+    # would count slow-but-correct mutants as wrong.
     accepted = {(r["benchmark"], r["task_id"], r["tag"]) for r in rows if r["status"] == "pass"}
-    oracle_jobs = [Job(b, tid, "plus", sources[(b, tid, tag)], tag) for (b, tid, tag) in sorted(accepted)]
-    print(f"[mutation] phase 2: {len(oracle_jobs)} accepted mutants -> plus oracle")
+    oracle_jobs = [
+        Job(b, tid, g, sources[(b, tid, tag)], tag)
+        for (b, tid, tag) in sorted(accepted)
+        for g in ("plus", "hardened")
+    ]
+    print(f"[mutation] phase 2: {len(oracle_jobs)} oracle jobs (plus + hardened) for accepted mutants")
     rows += run_jobs(oracle_jobs, workers)
     for r in rows:
         r["source"] = sources[(r["benchmark"], r["task_id"], r["tag"])]

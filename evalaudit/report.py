@@ -85,8 +85,9 @@ def _mutation_section(rows: list[dict], summary: dict) -> list[str]:
 
     out = ["## 2. Grader mutation testing", ""]
     out.append(
-        "One-edit mutants of the reference solution. **Confirmed wrong** = the mutant "
-        "fails EvalPlus's plus suite (a concrete input where it disagrees with ground truth). "
+        "One-edit mutants of the reference solution. **Confirmed wrong** = on EvalPlus's "
+        "base+plus inputs the mutant returns a wrong value or raises (hardened grader; "
+        "timeouts are not counted as wrong). "
         "Mutants that pass every suite are *not* counted (may be equivalent)."
     )
     out.append("")
@@ -101,7 +102,7 @@ def _mutation_section(rows: list[dict], summary: dict) -> list[str]:
         n_tasks = len(load(b))
         for g in ("original", "base"):
             accepted = [k for k in keys if by_mutant[k].get(g) == "pass"]
-            wrong = [k for k in accepted if by_mutant[k].get("plus") == "fail"]
+            wrong = [k for k in accepted if by_mutant[k].get("hardened", by_mutant[k].get("plus")) == "fail"]
             tasks_wrong = sorted({k[1] for k in wrong})
             out.append(
                 f"| {BENCH_LABEL[b]} | {GRADER_LABEL[g]} | {len(keys)} | {len(accepted)} | "
@@ -129,7 +130,7 @@ def _mutation_section(rows: list[dict], summary: dict) -> list[str]:
         out.append("")
         for b, tid, tag in examples:
             task = load(b)[tid]
-            out.append(f"**{tid}** (`{tag.split(':', 1)[1]}`), passes original asserts and EvalPlus base, fails EvalPlus plus:")
+            out.append(f"**{tid}** (`{tag.split(':', 1)[1]}`), passes original asserts and EvalPlus base, but returns a wrong value on an EvalPlus input:")
             out.append("")
             out.append("```diff")
             out.append(_unified(task.canonical, src[(b, tid, tag)]))

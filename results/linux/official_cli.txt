@@ -1,0 +1,20 @@
+=== humaneval / null ===
+humaneval (base tests)
+pass@1:	0.000
+humaneval+ (base + extra tests)
+pass@1:	0.000
+=== humaneval / hybrid ===
+humaneval (base tests)
+pass@1:	0.994
+humaneval+ (base + extra tests)
+pass@1:	0.994
+=== mbpp / null ===
+mbpp (base tests)
+pass@1:	0.000
+mbpp+ (base + extra tests)
+pass@1:	0.000
+=== mbpp / hybrid ===
+mbpp (base tests)
+pass@1:	1.000
+mbpp+ (base + extra tests)
+pass@1:	1.000

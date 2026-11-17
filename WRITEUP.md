@@ -5,7 +5,7 @@
 I applied QA techniques to the graders of two widely used code benchmarks, HumanEval (164 tasks) and MBPP (378 tasks): adversarial inputs, mutation testing, repeatability under load, static test-data checks, and power analysis. I audited both the original assert-based tests and EvalPlus 0.3.1, the current PyPI release and the de facto rigorous grader.
 
 1. **A solution that never attempts the task scores pass@1 0.994 on HumanEval+ and 1.000 on MBPP+**, measured end to end through EvalPlus's own `evaluate` entry point. Two lines of attack are enough: an object whose `__eq__` always returns True, and reading `expected[i]` off the call stack. Both work because the grader compares answers inside the same process it is grading.
-2. **About 1 in 5 tasks accepts a provably wrong solution.** In 22.0% of HumanEval tasks and 18.5% of MBPP tasks, the shipped tests pass a one-edit mutant of the reference that EvalPlus's 1,000-input suite proves wrong. One example: an `is_prime` that says 2 isn't prime passes all 13 original HumanEval/31 asserts.
+2. **About 1 in 5 tasks accepts a provably wrong solution.** In 22.0% of HumanEval tasks and 18.3% of MBPP tasks, the shipped tests pass a one-edit mutant of the reference that returns a wrong value on an EvalPlus input. One example: an `is_prime` that says 2 isn't prime passes all 13 original HumanEval/31 asserts.
 3. **Load changes verdicts.** On a busy machine, correct reference solutions for 10 tasks were graded `fail` in 39 of 50 runs, because timeouts are reported as wrong answers. On an idle machine all 10 pass every time.
 4. **Broken and degenerate tasks.** HumanEval/32 can't be passed in the released EvalPlus, and its reference solution fails the oracle on 6 inputs even with the upstream fix. One MBPP+ plus suite is empty, and 6 others pass a constant function.
 5. **A fix.** A hardened grader keeps expected outputs out of the untrusted process. It rejects 100% of cheaters (0/542), and every reference solution passes except the one broken task.
@@ -27,7 +27,7 @@ Four graders are compared:
 Five experiments:
 
 - **Cheaters.** Four solutions that never read the task: `null` (control), `always_equal`, `frame_peek`, and `hybrid`. Any PASS is a false pass by construction.
-- **Grader mutation.** Up to 25 one-edit AST mutants per task (comparison flips, +/- swaps, constant ±1, and/or swaps, dropped `not`), limited to the entry function and seeded for determinism. That gave 3,644 mutants. A mutant counts as **confirmed wrong** only if EvalPlus's plus suite finds an input where it disagrees with ground truth. Mutants that pass every suite may be equivalent and are never counted.
+- **Grader mutation.** Up to 25 one-edit AST mutants per task (comparison flips, +/- swaps, constant ±1, and/or swaps, dropped `not`), limited to the entry function and seeded for determinism. That gave 3,644 mutants. A mutant counts as **confirmed wrong** only if, on EvalPlus's base+plus inputs (about 1,000 per task), it returns a value that disagrees with ground truth or raises. Timeouts don't count: a first version used EvalPlus's own verdict here, and on Linux it marked two slow but correct Mbpp/583 mutants as wrong (finding 3 is the reason). Mutants that pass every suite may be equivalent and are never counted.
 - **Reliability.** Every reference solution, under every grader, 5 times, with 2 workers per core to simulate a busy CI box. Every non-pass was then re-graded on an idle machine to separate broken tasks from load sensitivity.
 - **Degenerate suites.** A static scan for empty suites and suites where every expected output is the same value. Each hit was then confirmed by running a constant-returning function.
 - **Power.** The minimum detectable difference between two models' pass rates (two-proportion z-test, α=0.05, power 0.80).
@@ -59,10 +59,10 @@ The `null` control's 2 passes on MBPP plus are the degenerate suites in finding 
 
 | Benchmark | Grader | Mutants accepted | Confirmed wrong | Tasks accepting a confirmed-wrong mutant |
 |---|---|---|---|---|
-| HumanEval | original asserts | 205 / 1,685 | 99 | **36 / 164 = 22.0%** (16.3–28.9) |
-| HumanEval | EvalPlus base | 202 / 1,685 | 95 | 35 / 164 = 21.3% (15.8–28.2) |
-| MBPP | original asserts | 394 / 1,959 | 220 | **70 / 378 = 18.5%** (14.9–22.7) |
-| MBPP | EvalPlus base | 394 / 1,959 | 220 | 70 / 378 = 18.5% (14.9–22.7) |
+| HumanEval | original asserts | 205 / 1,685 | 98 | **36 / 164 = 22.0%** (16.3–28.9) |
+| HumanEval | EvalPlus base | 202 / 1,685 | 94 | 35 / 164 = 21.3% (15.8–28.2) |
+| MBPP | original asserts | 394 / 1,959 | 218 | **69 / 378 = 18.3%** (14.7–22.5) |
+| MBPP | EvalPlus base | 394 / 1,959 | 218 | 69 / 378 = 18.3% (14.7–22.5) |
 
 Examples, each passing the original asserts and EvalPlus base:
 
@@ -131,7 +131,8 @@ The cost is one extra pickle round-trip per task.
 
 - Function-level Python benchmarks only.
 - "Confirmed wrong" relies on EvalPlus's plus-suite ground truth, which is itself imperfect (finding 4).
-- Run on macOS with 8 cores and Python 3.14. RLIMIT_AS is disabled through EvalPlus's documented opt-out because macOS rejects it.
+- Primary run: macOS, 8 cores, Python 3.14. RLIMIT_AS is disabled through EvalPlus's documented opt-out because macOS rejects it.
+- **Reproduced on Linux** (GitHub Actions ubuntu-latest, 4 cores, Python 3.12, EvalPlus's 4 GB RLIMIT_AS sandbox on), results in `results/linux/`. Cheater rates and official pass@1, HumanEval/32, and the degenerate suites are identical on both. Load-induced `fail` verdicts reproduce too, on a partly different set of tasks, as expected for a timing effect.
 - The cheaters show a grader design flaw. I don't claim any published score was obtained this way.
 
 Reproduce everything with `evalaudit all` (about 5 minutes) and `python scripts/verify_official_cli.py`.
