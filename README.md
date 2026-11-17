@@ -1,55 +1,53 @@
 # evalaudit: I test the tests
 
-Code benchmarks score models with graders. `evalaudit` checks the graders themselves: whether they can be cheated, how many wrong solutions they let through, whether they give the same verdict twice, and how big a score gap they can actually resolve.
+Code benchmarks score models by running their code against tests. This project checks the tests. Can they be cheated? Do they let wrong answers through? Do they give the same result twice?
 
-Targets: **HumanEval** (164 tasks) and **MBPP** (378 tasks). For each, it audits the original assert-based tests and the graders in [EvalPlus](https://github.com/evalplus/evalplus) 0.3.1 (latest PyPI release). EvalPlus's grader is imported and called unmodified.
+It covers HumanEval (164 tasks) and MBPP (378 tasks), using both the original tests and [EvalPlus](https://github.com/evalplus/evalplus) 0.3.1, the latest release. EvalPlus's grader is used exactly as published.
 
-## Headline results
+## What I found
 
-| # | Finding | Number |
-|---|---|---|
-| 1 | A solution that **never attempts the task** passes EvalPlus's grader, measured end to end through `evalplus.evaluate` | **pass@1 0.994** HumanEval+ · **1.000** MBPP+ (control: 0.000) |
-| 2 | Same cheater vs. the original HumanEval / MBPP asserts | **95.7%** (91.5–97.9) · **93.9%** (91.0–95.9) |
-| 3 | Tasks whose shipped tests accept a **provably wrong** one-edit solution | **22.0%** of HumanEval (16.3–28.9) · **18.3%** of MBPP (14.7–22.5) |
-| 4 | Correct reference solutions graded **wrong** under CPU load (timeouts reported as `fail`) | 39 `fail` verdicts across 10 tasks (5 runs each); **all 10 pass on an idle machine** |
-| 5 | HumanEval/32 can't be passed in the EvalPlus 0.3.1 release, and its reference solution fails the `find_zero` oracle on 6 plus inputs even with master's fix | reference solution graded `fail` |
-| 6 | Degenerate MBPP+ plus suites: 1 empty, 6 where every expected output is the same value | a one-line constant function passes them |
-| 7 | Smallest gap you can trust on HumanEval (164 tasks) at an 80% pass rate | **±12.4 points** |
-| Fix | `hardened.py` grader | cheaters **0/542**; references 541/542 pass (the exception is #5) |
+| What | Result |
+|---|---|
+| A fake solution that never solves anything, scored by EvalPlus's own `evaluate` | 0.994 on HumanEval+, 1.000 on MBPP+ (empty control: 0.000) |
+| The same fake against the original tests | passes 95.7% of HumanEval, 93.9% of MBPP |
+| Tasks whose tests accept an answer I can prove wrong | 22.0% of HumanEval, 18.3% of MBPP |
+| Correct answers marked wrong on a busy machine | 10 tasks, 39 of 50 runs; all pass on a quiet machine |
+| HumanEval/32 | can't be passed in the current release, and the official solution misses 6 test inputs even after the fix |
+| MBPP+ extra tests that don't test anything | 1 empty, 6 passed by a function that returns a constant |
+| Smallest HumanEval gap you can trust (at 80% pass rate) | about 12 points |
+| My fixed grader | blocks every fake (0 of 542); 541 of 542 official solutions pass |
 
-95% Wilson intervals are in parentheses.
+Numbers in parentheses in the full tables are 95% confidence intervals.
 
-Full tables: [`results/FINDINGS.md`](results/FINDINGS.md). Write-up: [`WRITEUP.md`](WRITEUP.md). Reported upstream: [evalplus#333](https://github.com/evalplus/evalplus/issues/333), [#334](https://github.com/evalplus/evalplus/issues/334), [#335](https://github.com/evalplus/evalplus/issues/335), [#336](https://github.com/evalplus/evalplus/issues/336).
+The full write-up is in [`WRITEUP.md`](WRITEUP.md), and every table is in [`results/FINDINGS.md`](results/FINDINGS.md). I reported all four problems upstream: [#333](https://github.com/evalplus/evalplus/issues/333), [#334](https://github.com/evalplus/evalplus/issues/334), [#335](https://github.com/evalplus/evalplus/issues/335), [#336](https://github.com/evalplus/evalplus/issues/336).
 
-## What it does
+## How it works
 
-| Experiment | Question | Method |
-|---|---|---|
-| **Cheaters** (`exploits.py`) | Can a solution that never attempts the task pass? | Four non-solving solutions: `null` (control), `always_equal` (an object whose `__eq__` is always True), `frame_peek` (reads the grader's `expected[i]` off the call stack), `hybrid` |
-| **Grader mutation** (`mutation.py`) | How many *wrong* solutions does the grader accept? | One-edit AST mutants of the reference solution, limited to the entry function. A mutant is **confirmed wrong** only if it returns a wrong value (or raises) on one of EvalPlus's ~1,000 inputs. Timeouts and equivalent mutants are never counted. |
-| **Reliability** (`audit.py`) | Does the reference solution pass, every time? | Reference solutions graded 5× on an oversubscribed machine (2 workers per core), then re-graded on an idle machine to separate broken tasks from load sensitivity |
-| **Degenerate suites** (`report.py`) | Is a suite empty, or does a constant function pass it? | Static scan of expected outputs |
-| **Power** (`stats.py`) | How big a pass-rate gap is real? | Minimum detectable difference, two-proportion z-test, α=0.05, power 0.8 |
-| **Fix** (`hardened.py`) | Does a different design close the holes? | Expected outputs never enter the untrusted process; the child returns plain data only; the trusted parent compares; timeouts are reported as `timeout`, not `fail` |
+- **Fake solutions** (`exploits.py`): four solutions that never read the problem. One returns `None` as a control. One returns an object that's "equal" to anything. One reads the expected answer out of the grader's memory. One combines the last two.
+- **Small changes** (`mutation.py`): take the official solution, change one thing (`<` to `<=`, `1` to `2`, `+` to `-`), and see if the tests notice. A change only counts as wrong if it gives a wrong answer on a real input. Timeouts don't count.
+- **Repeat runs** (`audit.py`): grade the official solutions several times on a busy machine, then re-check anything that failed on a quiet one.
+- **Weak test scan** (`report.py`): look for test suites that are empty or where every expected answer is the same.
+- **Score gaps** (`stats.py`): how far apart two models must be before the difference is real.
+- **The fix** (`hardened.py`): run the code in a process that never sees the answers, send back plain data only, compare in a trusted process, and report timeouts as timeouts.
 
 ## Run it
 
 ```bash
 uv venv && uv pip install -e ".[dev]"
-evalaudit all --workers 8          # ~4 min on an 8-core laptop; writes results/
-pytest -q                           # unit + integration tests
-python scripts/verify_official_cli.py   # cheaters through EvalPlus's own `evaluate` entry point
-python scripts/diagnose.py humaneval:HumanEval/32:plus   # re-grade one task on an idle machine
+evalaudit all --workers 8          # about 5 minutes on an 8-core laptop; writes results/
+pytest -q
+python scripts/verify_official_cli.py   # run the fakes through EvalPlus's own evaluate command
+python scripts/diagnose.py humaneval:HumanEval/32:plus   # re-check one task on a quiet machine
 ```
 
-All experiments are deterministic (seeded mutant sampling). Benchmarks download on first run via EvalPlus's loaders.
+Runs are repeatable (the small changes use a fixed seed). The benchmarks download the first time you run it.
 
-## Scope and honesty notes
+## Good to know
 
-- These are function-level Python benchmarks. Agentic benchmarks with repository-level graders are the next target; the harness (sandbox → grader → oracle → statistics) carries over.
-- The `original` grader is a faithful re-implementation of `openai/human-eval`'s `check_correctness`, built from the same guard helpers EvalPlus vendors. For MBPP it uses the `assertion` field EvalPlus ships, plus the original `test_imports`.
-- Run on macOS (8 cores) and **reproduced on Linux** in CI (`.github/workflows/audit.yml`, results in `results/linux/`). On macOS only, `EVALPLUS_MAX_MEMORY_BYTES=-1` is set, which is EvalPlus's documented opt-out, because macOS rejects `RLIMIT_AS`.
-- The cheaters are a grader-design finding, not a claim that any published model score was obtained this way. They matter because an RL policy optimizing against such a grader can find them.
+- These are small, single-function Python tasks. Agent benchmarks that grade a whole repo are next.
+- The "original tests" grader rebuilds what `openai/human-eval` does, using the same safety helpers EvalPlus uses. For MBPP it uses the tests EvalPlus ships plus the original imports.
+- I ran it on macOS and again on Linux through GitHub Actions (`.github/workflows/audit.yml`, results in `results/linux/`). The results match. macOS doesn't allow EvalPlus's memory limit, so it's turned off there with EvalPlus's own setting. On Linux it stays on.
+- I'm not saying any published score was faked. This is about how the grader is built, which matters most when it's used to train models.
 
 ## License
 
