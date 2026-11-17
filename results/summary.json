@@ -1,0 +1,593 @@
+{
+  "exploits": {
+    "humaneval/null/original": [
+      0,
+      164
+    ],
+    "humaneval/null/base": [
+      0,
+      164
+    ],
+    "humaneval/null/plus": [
+      0,
+      164
+    ],
+    "humaneval/null/hardened": [
+      0,
+      164
+    ],
+    "humaneval/always_equal/original": [
+      157,
+      164
+    ],
+    "humaneval/always_equal/base": [
+      163,
+      164
+    ],
+    "humaneval/always_equal/plus": [
+      163,
+      164
+    ],
+    "humaneval/always_equal/hardened": [
+      0,
+      164
+    ],
+    "humaneval/frame_peek/original": [
+      0,
+      164
+    ],
+    "humaneval/frame_peek/base": [
+      163,
+      164
+    ],
+    "humaneval/frame_peek/plus": [
+      163,
+      164
+    ],
+    "humaneval/frame_peek/hardened": [
+      0,
+      164
+    ],
+    "humaneval/hybrid/original": [
+      157,
+      164
+    ],
+    "humaneval/hybrid/base": [
+      163,
+      164
+    ],
+    "humaneval/hybrid/plus": [
+      163,
+      164
+    ],
+    "humaneval/hybrid/hardened": [
+      0,
+      164
+    ],
+    "mbpp/null/original": [
+      0,
+      378
+    ],
+    "mbpp/null/base": [
+      0,
+      378
+    ],
+    "mbpp/null/plus": [
+      2,
+      378
+    ],
+    "mbpp/null/hardened": [
+      0,
+      378
+    ],
+    "mbpp/always_equal/original": [
+      355,
+      378
+    ],
+    "mbpp/always_equal/base": [
+      368,
+      378
+    ],
+    "mbpp/always_equal/plus": [
+      368,
+      378
+    ],
+    "mbpp/always_equal/hardened": [
+      0,
+      378
+    ],
+    "mbpp/frame_peek/original": [
+      0,
+      378
+    ],
+    "mbpp/frame_peek/base": [
+      378,
+      378
+    ],
+    "mbpp/frame_peek/plus": [
+      378,
+      378
+    ],
+    "mbpp/frame_peek/hardened": [
+      0,
+      378
+    ],
+    "mbpp/hybrid/original": [
+      355,
+      378
+    ],
+    "mbpp/hybrid/base": [
+      378,
+      378
+    ],
+    "mbpp/hybrid/plus": [
+      378,
+      378
+    ],
+    "mbpp/hybrid/hardened": [
+      0,
+      378
+    ]
+  },
+  "mutation": {
+    "humaneval/original": {
+      "mutants": 1685,
+      "accepted": 205,
+      "confirmed_wrong": 99,
+      "tasks_with_wrong_accepted": 36,
+      "n_tasks": 164,
+      "task_ids": [
+        "HumanEval/0",
+        "HumanEval/102",
+        "HumanEval/105",
+        "HumanEval/106",
+        "HumanEval/109",
+        "HumanEval/114",
+        "HumanEval/122",
+        "HumanEval/124",
+        "HumanEval/127",
+        "HumanEval/129",
+        "HumanEval/130",
+        "HumanEval/135",
+        "HumanEval/146",
+        "HumanEval/147",
+        "HumanEval/154",
+        "HumanEval/156",
+        "HumanEval/157",
+        "HumanEval/163",
+        "HumanEval/19",
+        "HumanEval/20",
+        "HumanEval/31",
+        "HumanEval/32",
+        "HumanEval/44",
+        "HumanEval/46",
+        "HumanEval/55",
+        "HumanEval/57",
+        "HumanEval/59",
+        "HumanEval/63",
+        "HumanEval/64",
+        "HumanEval/71",
+        "HumanEval/75",
+        "HumanEval/76",
+        "HumanEval/80",
+        "HumanEval/81",
+        "HumanEval/93",
+        "HumanEval/99"
+      ]
+    },
+    "humaneval/base": {
+      "mutants": 1685,
+      "accepted": 202,
+      "confirmed_wrong": 95,
+      "tasks_with_wrong_accepted": 35,
+      "n_tasks": 164,
+      "task_ids": [
+        "HumanEval/0",
+        "HumanEval/102",
+        "HumanEval/105",
+        "HumanEval/106",
+        "HumanEval/109",
+        "HumanEval/114",
+        "HumanEval/122",
+        "HumanEval/124",
+        "HumanEval/127",
+        "HumanEval/129",
+        "HumanEval/130",
+        "HumanEval/135",
+        "HumanEval/146",
+        "HumanEval/147",
+        "HumanEval/154",
+        "HumanEval/156",
+        "HumanEval/157",
+        "HumanEval/163",
+        "HumanEval/19",
+        "HumanEval/20",
+        "HumanEval/31",
+        "HumanEval/44",
+        "HumanEval/46",
+        "HumanEval/55",
+        "HumanEval/57",
+        "HumanEval/59",
+        "HumanEval/63",
+        "HumanEval/64",
+        "HumanEval/71",
+        "HumanEval/75",
+        "HumanEval/76",
+        "HumanEval/80",
+        "HumanEval/81",
+        "HumanEval/93",
+        "HumanEval/99"
+      ]
+    },
+    "humaneval/survived_all": 106,
+    "mbpp/original": {
+      "mutants": 1959,
+      "accepted": 394,
+      "confirmed_wrong": 220,
+      "tasks_with_wrong_accepted": 70,
+      "n_tasks": 378,
+      "task_ids": [
+        "Mbpp/100",
+        "Mbpp/11",
+        "Mbpp/113",
+        "Mbpp/125",
+        "Mbpp/128",
+        "Mbpp/129",
+        "Mbpp/133",
+        "Mbpp/137",
+        "Mbpp/138",
+        "Mbpp/160",
+        "Mbpp/162",
+        "Mbpp/166",
+        "Mbpp/167",
+        "Mbpp/20",
+        "Mbpp/222",
+        "Mbpp/223",
+        "Mbpp/244",
+        "Mbpp/245",
+        "Mbpp/247",
+        "Mbpp/260",
+        "Mbpp/264",
+        "Mbpp/280",
+        "Mbpp/290",
+        "Mbpp/300",
+        "Mbpp/306",
+        "Mbpp/311",
+        "Mbpp/392",
+        "Mbpp/433",
+        "Mbpp/435",
+        "Mbpp/436",
+        "Mbpp/448",
+        "Mbpp/453",
+        "Mbpp/455",
+        "Mbpp/468",
+        "Mbpp/559",
+        "Mbpp/567",
+        "Mbpp/576",
+        "Mbpp/577",
+        "Mbpp/589",
+        "Mbpp/594",
+        "Mbpp/602",
+        "Mbpp/605",
+        "Mbpp/62",
+        "Mbpp/622",
+        "Mbpp/638",
+        "Mbpp/639",
+        "Mbpp/66",
+        "Mbpp/68",
+        "Mbpp/69",
+        "Mbpp/71",
+        "Mbpp/72",
+        "Mbpp/721",
+        "Mbpp/722",
+        "Mbpp/733",
+        "Mbpp/741",
+        "Mbpp/745",
+        "Mbpp/751",
+        "Mbpp/755",
+        "Mbpp/757",
+        "Mbpp/762",
+        "Mbpp/763",
+        "Mbpp/765",
+        "Mbpp/771",
+        "Mbpp/781",
+        "Mbpp/784",
+        "Mbpp/803",
+        "Mbpp/806",
+        "Mbpp/809",
+        "Mbpp/84",
+        "Mbpp/92"
+      ]
+    },
+    "mbpp/base": {
+      "mutants": 1959,
+      "accepted": 394,
+      "confirmed_wrong": 220,
+      "tasks_with_wrong_accepted": 70,
+      "n_tasks": 378,
+      "task_ids": [
+        "Mbpp/100",
+        "Mbpp/11",
+        "Mbpp/113",
+        "Mbpp/125",
+        "Mbpp/128",
+        "Mbpp/129",
+        "Mbpp/133",
+        "Mbpp/137",
+        "Mbpp/138",
+        "Mbpp/160",
+        "Mbpp/162",
+        "Mbpp/166",
+        "Mbpp/167",
+        "Mbpp/20",
+        "Mbpp/222",
+        "Mbpp/223",
+        "Mbpp/244",
+        "Mbpp/245",
+        "Mbpp/247",
+        "Mbpp/260",
+        "Mbpp/264",
+        "Mbpp/280",
+        "Mbpp/290",
+        "Mbpp/300",
+        "Mbpp/306",
+        "Mbpp/311",
+        "Mbpp/392",
+        "Mbpp/433",
+        "Mbpp/435",
+        "Mbpp/436",
+        "Mbpp/448",
+        "Mbpp/453",
+        "Mbpp/455",
+        "Mbpp/468",
+        "Mbpp/559",
+        "Mbpp/567",
+        "Mbpp/576",
+        "Mbpp/577",
+        "Mbpp/589",
+        "Mbpp/594",
+        "Mbpp/602",
+        "Mbpp/605",
+        "Mbpp/62",
+        "Mbpp/622",
+        "Mbpp/638",
+        "Mbpp/639",
+        "Mbpp/66",
+        "Mbpp/68",
+        "Mbpp/69",
+        "Mbpp/71",
+        "Mbpp/72",
+        "Mbpp/721",
+        "Mbpp/722",
+        "Mbpp/733",
+        "Mbpp/741",
+        "Mbpp/745",
+        "Mbpp/751",
+        "Mbpp/755",
+        "Mbpp/757",
+        "Mbpp/762",
+        "Mbpp/763",
+        "Mbpp/765",
+        "Mbpp/771",
+        "Mbpp/781",
+        "Mbpp/784",
+        "Mbpp/803",
+        "Mbpp/806",
+        "Mbpp/809",
+        "Mbpp/84",
+        "Mbpp/92"
+      ]
+    },
+    "mbpp/survived_all": 174
+  },
+  "reliability": {
+    "humaneval/original": {
+      "n": 164,
+      "broken": [],
+      "flaky": [],
+      "flaky_detail": {}
+    },
+    "humaneval/base": {
+      "n": 164,
+      "broken": [
+        "HumanEval/32"
+      ],
+      "flaky": [],
+      "flaky_detail": {}
+    },
+    "humaneval/plus": {
+      "n": 164,
+      "broken": [
+        "HumanEval/139",
+        "HumanEval/32",
+        "HumanEval/83"
+      ],
+      "flaky": [],
+      "flaky_detail": {}
+    },
+    "humaneval/hardened": {
+      "n": 164,
+      "broken": [
+        "HumanEval/139",
+        "HumanEval/32",
+        "HumanEval/83"
+      ],
+      "flaky": [
+        "HumanEval/120"
+      ],
+      "flaky_detail": {
+        "HumanEval/120": [
+          "pass",
+          "pass",
+          "pass",
+          "timeout",
+          "pass"
+        ]
+      }
+    },
+    "mbpp/original": {
+      "n": 378,
+      "broken": [
+        "Mbpp/120"
+      ],
+      "flaky": [],
+      "flaky_detail": {}
+    },
+    "mbpp/base": {
+      "n": 378,
+      "broken": [],
+      "flaky": [],
+      "flaky_detail": {}
+    },
+    "mbpp/plus": {
+      "n": 378,
+      "broken": [
+        "Mbpp/255",
+        "Mbpp/389",
+        "Mbpp/599",
+        "Mbpp/603"
+      ],
+      "flaky": [
+        "Mbpp/271",
+        "Mbpp/392",
+        "Mbpp/583",
+        "Mbpp/630"
+      ],
+      "flaky_detail": {
+        "Mbpp/271": [
+          "pass",
+          "fail",
+          "fail",
+          "pass",
+          "fail"
+        ],
+        "Mbpp/392": [
+          "pass",
+          "pass",
+          "pass",
+          "pass",
+          "fail"
+        ],
+        "Mbpp/583": [
+          "pass",
+          "fail",
+          "fail",
+          "fail",
+          "fail"
+        ],
+        "Mbpp/630": [
+          "pass",
+          "fail",
+          "pass",
+          "pass",
+          "pass"
+        ]
+      }
+    },
+    "mbpp/hardened": {
+      "n": 378,
+      "broken": [
+        "Mbpp/255",
+        "Mbpp/389",
+        "Mbpp/599"
+      ],
+      "flaky": [
+        "Mbpp/271",
+        "Mbpp/392",
+        "Mbpp/583",
+        "Mbpp/592",
+        "Mbpp/603",
+        "Mbpp/630"
+      ],
+      "flaky_detail": {
+        "Mbpp/271": [
+          "pass",
+          "pass",
+          "pass",
+          "timeout",
+          "pass"
+        ],
+        "Mbpp/392": [
+          "pass",
+          "pass",
+          "pass",
+          "timeout",
+          "timeout"
+        ],
+        "Mbpp/583": [
+          "pass",
+          "timeout",
+          "timeout",
+          "timeout",
+          "timeout"
+        ],
+        "Mbpp/592": [
+          "pass",
+          "pass",
+          "pass",
+          "timeout",
+          "pass"
+        ],
+        "Mbpp/603": [
+          "timeout",
+          "timeout",
+          "timeout",
+          "timeout",
+          "pass"
+        ],
+        "Mbpp/630": [
+          "pass",
+          "timeout",
+          "timeout",
+          "timeout",
+          "pass"
+        ]
+      }
+    }
+  },
+  "degenerate": {
+    "humaneval/base": {
+      "empty": [],
+      "constant": []
+    },
+    "humaneval/plus": {
+      "empty": [],
+      "constant": []
+    },
+    "mbpp/base": {
+      "empty": [],
+      "constant": []
+    },
+    "mbpp/plus": {
+      "empty": [
+        "Mbpp/793"
+      ],
+      "constant": [
+        "Mbpp/223",
+        "Mbpp/285",
+        "Mbpp/635",
+        "Mbpp/734",
+        "Mbpp/760",
+        "Mbpp/787"
+      ]
+    }
+  },
+  "power": {
+    "humaneval": {
+      "n": 164,
+      "mde": [
+        0.15469166553247346,
+        0.12375333242597875,
+        0.09281499931948406
+      ]
+    },
+    "mbpp": {
+      "n": 378,
+      "mde": [
+        0.10189266926882574,
+        0.0815141354150606,
+        0.06113560156129544
+      ]
+    }
+  }
+}

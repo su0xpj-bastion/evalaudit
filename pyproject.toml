@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evalaudit"
+version = "0.1.0"
+description = "Test the tests: cheater agents, grader mutation testing, flakiness and power analysis for code benchmarks."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = ["evalplus==0.3.1", "numpy"]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+evalaudit = "evalaudit.cli:main"
+
+[tool.setuptools]
+packages = ["evalaudit"]
+
+[tool.pytest.ini_options]
+filterwarnings = ["ignore::DeprecationWarning"]
