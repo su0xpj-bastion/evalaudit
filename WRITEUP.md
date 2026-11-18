@@ -79,6 +79,16 @@ On all 542 tasks it blocks every fake solution. Every official solution still pa
 
 I've reported all four problems to the EvalPlus maintainers: [#333](https://github.com/evalplus/evalplus/issues/333), [#334](https://github.com/evalplus/evalplus/issues/334), [#335](https://github.com/evalplus/evalplus/issues/335), [#336](https://github.com/evalplus/evalplus/issues/336).
 
+## Related work
+
+Other people have found the same kind of problem in bigger benchmarks:
+
+- Berkeley RDI and the BenchJack paper ([blog](https://rdi.berkeley.edu/blog/trustworthy-benchmarks-cont/), [arXiv 2605.12673](https://arxiv.org/abs/2605.12673), 2026) got near-perfect scores on agent benchmarks like SWE-bench Verified, Terminal-Bench and WebArena without solving tasks. On SWE-bench they did it with a small `conftest.py` that marks every test as passed.
+- UTBoost ([arXiv 2506.09289](https://arxiv.org/abs/2506.09289)) showed that SWE-bench's tests let wrong patches through, much like finding 2 here.
+- EvilGenie ([arXiv 2511.21654](https://arxiv.org/abs/2511.21654)) and CATCH ([arXiv 2609.39533](https://arxiv.org/abs/2609.39533)) study models that learn to cheat in coding tasks, using setups built to be cheatable.
+
+None of these look at HumanEval, MBPP or EvalPlus, which is what this project covers. The root cause is the same everywhere: the grader trusts something the graded code can touch.
+
 ## Limits
 
 - These are small, single-function Python tasks. Bigger agent benchmarks, where the model edits a whole repo, give it many more ways to cheat (editing the tests, for one). That's where I'm going next.

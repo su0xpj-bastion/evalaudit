@@ -13,12 +13,13 @@ dependencies = ["evalplus==0.3.1", "numpy"]
 
 [project.optional-dependencies]
 dev = ["pytest"]
+rewards = ["huggingface_hub", "pandas", "pyarrow", "tqdm", "httpx", "matplotlib", "pytest"]
 
 [project.scripts]
 evalaudit = "evalaudit.cli:main"
 
 [tool.setuptools]
-packages = ["evalaudit"]
+packages = ["evalaudit", "evalaudit.rewards"]
 
 [tool.pytest.ini_options]
 filterwarnings = ["ignore::DeprecationWarning"]

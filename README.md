@@ -21,6 +21,22 @@ Numbers in parentheses in the full tables are 95% confidence intervals.
 
 The full write-up is in [`WRITEUP.md`](WRITEUP.md), and every table is in [`results/FINDINGS.md`](results/FINDINGS.md). I reported all four problems upstream: [#333](https://github.com/evalplus/evalplus/issues/333), [#334](https://github.com/evalplus/evalplus/issues/334), [#335](https://github.com/evalplus/evalplus/issues/335), [#336](https://github.com/evalplus/evalplus/issues/336).
 
+## Part two: RL code rewards
+
+The same problems show up in the reward functions people use to train coding models. I called verl, LiveCodeBench and rllm unmodified, each on its own data:
+
+| What | Result |
+|---|---|
+| Fake that solves nothing (verl on Eurus / LiveCodeBench v6 / rllm on DeepCoder) | 97.6% / 100% / 98–100% full reward; empty control 0% |
+| Empty the test list before it runs | passes every function-call task on all three (`all([])` is True) |
+| verl's default reward | checks only the first 10 tests once one fails; 66% of Eurus tasks have more |
+| Eurus function-call tasks | 96 of 1,024 can't be passed by any program |
+| Correct programs that use fast stdin I/O | zero reward on all three graders (29 references) |
+| open-r1 `code_reward` | full reward for a program that prints only the first line (20 of 72 tasks) |
+| My fixed reward | 0 fakes pass on 1,936 tasks; passes more honest references than any upstream grader |
+
+The write-up is [`REWARDS.md`](REWARDS.md) and the tables are in [`results/rewards/FINDINGS.md`](results/rewards/FINDINGS.md). Run it with `python -m evalaudit.rewards all` (needs `pip install -e ".[rewards]"`).
+
 ## How it works
 
 - **Fake solutions** (`exploits.py`): four solutions that never read the problem. One returns `None` as a control. One returns an object that's "equal" to anything. One reads the expected answer out of the grader's memory. One combines the last two.

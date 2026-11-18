@@ -1,0 +1,400 @@
+{
+  "any_fake": {
+    "eurus|verl": [
+      999,
+      1024
+    ],
+    "eurus|livecodebench": [
+      904,
+      1024
+    ],
+    "eurus|rllm": [
+      997,
+      1024
+    ],
+    "eurus|hardened": [
+      0,
+      1024
+    ],
+    "lcb_v6|verl": [
+      175,
+      175
+    ],
+    "lcb_v6|livecodebench": [
+      175,
+      175
+    ],
+    "lcb_v6|rllm": [
+      175,
+      175
+    ],
+    "lcb_v6|hardened": [
+      0,
+      175
+    ],
+    "deepcoder_lcb|verl": [
+      139,
+      139
+    ],
+    "deepcoder_lcb|livecodebench": [
+      139,
+      139
+    ],
+    "deepcoder_lcb|rllm": [
+      139,
+      139
+    ],
+    "deepcoder_lcb|hardened": [
+      0,
+      139
+    ],
+    "deepcoder_taco|verl": [
+      295,
+      300
+    ],
+    "deepcoder_taco|livecodebench": [
+      295,
+      300
+    ],
+    "deepcoder_taco|rllm": [
+      295,
+      300
+    ],
+    "deepcoder_taco|hardened": [
+      0,
+      300
+    ],
+    "deepcoder_primeintellect|verl": [
+      298,
+      298
+    ],
+    "deepcoder_primeintellect|livecodebench": [
+      298,
+      298
+    ],
+    "deepcoder_primeintellect|rllm": [
+      298,
+      298
+    ],
+    "deepcoder_primeintellect|hardened": [
+      0,
+      298
+    ]
+  },
+  "reference": {
+    "deepcoder_taco|verl": [
+      217,
+      261
+    ],
+    "deepcoder_taco|livecodebench": [
+      223,
+      261
+    ],
+    "deepcoder_taco|rllm": [
+      228,
+      261
+    ],
+    "deepcoder_taco|hardened": [
+      256,
+      261
+    ],
+    "deepcoder_taco|agree|verl": {
+      "both_pass": 215,
+      "upstream_only": [
+        "deepcoder_taco/458",
+        "deepcoder_taco/953"
+      ],
+      "hardened_only": [
+        "deepcoder_taco/30",
+        "deepcoder_taco/98",
+        "deepcoder_taco/113",
+        "deepcoder_taco/134",
+        "deepcoder_taco/167",
+        "deepcoder_taco/184",
+        "deepcoder_taco/204",
+        "deepcoder_taco/205",
+        "deepcoder_taco/254",
+        "deepcoder_taco/326",
+        "deepcoder_taco/343",
+        "deepcoder_taco/385",
+        "deepcoder_taco/434",
+        "deepcoder_taco/448",
+        "deepcoder_taco/547",
+        "deepcoder_taco/574",
+        "deepcoder_taco/579",
+        "deepcoder_taco/656",
+        "deepcoder_taco/799",
+        "deepcoder_taco/943",
+        "deepcoder_taco/967",
+        "deepcoder_taco/972",
+        "deepcoder_taco/974",
+        "deepcoder_taco/1046",
+        "deepcoder_taco/1181",
+        "deepcoder_taco/1285",
+        "deepcoder_taco/1325",
+        "deepcoder_taco/1333",
+        "deepcoder_taco/1350",
+        "deepcoder_taco/1389",
+        "deepcoder_taco/1394",
+        "deepcoder_taco/1419",
+        "deepcoder_taco/1449",
+        "deepcoder_taco/1458",
+        "deepcoder_taco/1517",
+        "deepcoder_taco/1599",
+        "deepcoder_taco/1666",
+        "deepcoder_taco/1728",
+        "deepcoder_taco/1739",
+        "deepcoder_taco/1761",
+        "deepcoder_taco/1803"
+      ]
+    },
+    "deepcoder_taco|agree|livecodebench": {
+      "both_pass": 221,
+      "upstream_only": [
+        "deepcoder_taco/458",
+        "deepcoder_taco/953"
+      ],
+      "hardened_only": [
+        "deepcoder_taco/98",
+        "deepcoder_taco/113",
+        "deepcoder_taco/134",
+        "deepcoder_taco/204",
+        "deepcoder_taco/205",
+        "deepcoder_taco/213",
+        "deepcoder_taco/254",
+        "deepcoder_taco/326",
+        "deepcoder_taco/343",
+        "deepcoder_taco/434",
+        "deepcoder_taco/547",
+        "deepcoder_taco/574",
+        "deepcoder_taco/579",
+        "deepcoder_taco/656",
+        "deepcoder_taco/702",
+        "deepcoder_taco/833",
+        "deepcoder_taco/943",
+        "deepcoder_taco/972",
+        "deepcoder_taco/974",
+        "deepcoder_taco/1012",
+        "deepcoder_taco/1046",
+        "deepcoder_taco/1181",
+        "deepcoder_taco/1285",
+        "deepcoder_taco/1325",
+        "deepcoder_taco/1333",
+        "deepcoder_taco/1350",
+        "deepcoder_taco/1356",
+        "deepcoder_taco/1389",
+        "deepcoder_taco/1449",
+        "deepcoder_taco/1458",
+        "deepcoder_taco/1599",
+        "deepcoder_taco/1666",
+        "deepcoder_taco/1728",
+        "deepcoder_taco/1739",
+        "deepcoder_taco/1761"
+      ]
+    },
+    "deepcoder_taco|agree|rllm": {
+      "both_pass": 226,
+      "upstream_only": [
+        "deepcoder_taco/458",
+        "deepcoder_taco/953"
+      ],
+      "hardened_only": [
+        "deepcoder_taco/98",
+        "deepcoder_taco/113",
+        "deepcoder_taco/134",
+        "deepcoder_taco/204",
+        "deepcoder_taco/205",
+        "deepcoder_taco/213",
+        "deepcoder_taco/254",
+        "deepcoder_taco/326",
+        "deepcoder_taco/343",
+        "deepcoder_taco/434",
+        "deepcoder_taco/523",
+        "deepcoder_taco/547",
+        "deepcoder_taco/574",
+        "deepcoder_taco/579",
+        "deepcoder_taco/656",
+        "deepcoder_taco/943",
+        "deepcoder_taco/972",
+        "deepcoder_taco/974",
+        "deepcoder_taco/1046",
+        "deepcoder_taco/1285",
+        "deepcoder_taco/1325",
+        "deepcoder_taco/1333",
+        "deepcoder_taco/1350",
+        "deepcoder_taco/1389",
+        "deepcoder_taco/1458",
+        "deepcoder_taco/1599",
+        "deepcoder_taco/1666",
+        "deepcoder_taco/1728",
+        "deepcoder_taco/1739",
+        "deepcoder_taco/1761"
+      ]
+    },
+    "deepcoder_primeintellect|verl": [
+      217,
+      298
+    ],
+    "deepcoder_primeintellect|livecodebench": [
+      204,
+      298
+    ],
+    "deepcoder_primeintellect|rllm": [
+      208,
+      298
+    ],
+    "deepcoder_primeintellect|hardened": [
+      227,
+      298
+    ],
+    "deepcoder_primeintellect|agree|verl": {
+      "both_pass": 201,
+      "upstream_only": [
+        "deepcoder_primeintellect/59",
+        "deepcoder_primeintellect/536",
+        "deepcoder_primeintellect/666",
+        "deepcoder_primeintellect/1007",
+        "deepcoder_primeintellect/1018",
+        "deepcoder_primeintellect/1098",
+        "deepcoder_primeintellect/1455",
+        "deepcoder_primeintellect/1461",
+        "deepcoder_primeintellect/1674",
+        "deepcoder_primeintellect/1957",
+        "deepcoder_primeintellect/2714",
+        "deepcoder_primeintellect/2736",
+        "deepcoder_primeintellect/2741",
+        "deepcoder_primeintellect/2766",
+        "deepcoder_primeintellect/2906",
+        "deepcoder_primeintellect/3187"
+      ],
+      "hardened_only": [
+        "deepcoder_primeintellect/33",
+        "deepcoder_primeintellect/419",
+        "deepcoder_primeintellect/454",
+        "deepcoder_primeintellect/485",
+        "deepcoder_primeintellect/506",
+        "deepcoder_primeintellect/524",
+        "deepcoder_primeintellect/593",
+        "deepcoder_primeintellect/780",
+        "deepcoder_primeintellect/822",
+        "deepcoder_primeintellect/1021",
+        "deepcoder_primeintellect/1128",
+        "deepcoder_primeintellect/1155",
+        "deepcoder_primeintellect/1256",
+        "deepcoder_primeintellect/1309",
+        "deepcoder_primeintellect/1385",
+        "deepcoder_primeintellect/1569",
+        "deepcoder_primeintellect/1582",
+        "deepcoder_primeintellect/1586",
+        "deepcoder_primeintellect/1662",
+        "deepcoder_primeintellect/2071",
+        "deepcoder_primeintellect/2148",
+        "deepcoder_primeintellect/2242",
+        "deepcoder_primeintellect/2271",
+        "deepcoder_primeintellect/2379",
+        "deepcoder_primeintellect/2840",
+        "deepcoder_primeintellect/2943"
+      ]
+    },
+    "deepcoder_primeintellect|agree|livecodebench": {
+      "both_pass": 204,
+      "upstream_only": [],
+      "hardened_only": [
+        "deepcoder_primeintellect/118",
+        "deepcoder_primeintellect/485",
+        "deepcoder_primeintellect/506",
+        "deepcoder_primeintellect/524",
+        "deepcoder_primeintellect/822",
+        "deepcoder_primeintellect/1021",
+        "deepcoder_primeintellect/1128",
+        "deepcoder_primeintellect/1155",
+        "deepcoder_primeintellect/1256",
+        "deepcoder_primeintellect/1309",
+        "deepcoder_primeintellect/1385",
+        "deepcoder_primeintellect/1522",
+        "deepcoder_primeintellect/1558",
+        "deepcoder_primeintellect/1569",
+        "deepcoder_primeintellect/1586",
+        "deepcoder_primeintellect/2071",
+        "deepcoder_primeintellect/2148",
+        "deepcoder_primeintellect/2242",
+        "deepcoder_primeintellect/2271",
+        "deepcoder_primeintellect/2379",
+        "deepcoder_primeintellect/2758",
+        "deepcoder_primeintellect/2840",
+        "deepcoder_primeintellect/2943"
+      ]
+    },
+    "deepcoder_primeintellect|agree|rllm": {
+      "both_pass": 208,
+      "upstream_only": [],
+      "hardened_only": [
+        "deepcoder_primeintellect/118",
+        "deepcoder_primeintellect/485",
+        "deepcoder_primeintellect/506",
+        "deepcoder_primeintellect/822",
+        "deepcoder_primeintellect/1021",
+        "deepcoder_primeintellect/1128",
+        "deepcoder_primeintellect/1155",
+        "deepcoder_primeintellect/1256",
+        "deepcoder_primeintellect/1309",
+        "deepcoder_primeintellect/1385",
+        "deepcoder_primeintellect/1569",
+        "deepcoder_primeintellect/1586",
+        "deepcoder_primeintellect/2071",
+        "deepcoder_primeintellect/2148",
+        "deepcoder_primeintellect/2242",
+        "deepcoder_primeintellect/2271",
+        "deepcoder_primeintellect/2379",
+        "deepcoder_primeintellect/2758",
+        "deepcoder_primeintellect/2943"
+      ]
+    }
+  },
+  "openr1": {
+    "reference": {
+      "open_r1": [
+        72,
+        100
+      ],
+      "hardened": [
+        77,
+        100
+      ]
+    },
+    "null": {
+      "open_r1": [
+        0,
+        100
+      ],
+      "hardened": [
+        0,
+        100
+      ]
+    },
+    "peek": {
+      "open_r1": [
+        0,
+        100
+      ],
+      "hardened": [
+        0,
+        100
+      ]
+    },
+    "first_line_only": {
+      "open_r1": [
+        74,
+        100
+      ],
+      "hardened": [
+        53,
+        100
+      ]
+    },
+    "accepted_wrong": [
+      20,
+      72
+    ]
+  }
+}

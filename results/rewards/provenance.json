@@ -1,0 +1,42 @@
+{
+  "verl": {
+    "repo": "https://github.com/volcengine/verl",
+    "commit": "b0871fd89d19329d8c9ed58e5402b11dcf920b64",
+    "files": {
+      "verl/utils/reward_score/prime_code/__init__.py": "139690b83b2b21c0797696e07a36f24a206808183793d29fb15a5d49b8e58efc",
+      "verl/utils/reward_score/prime_code/utils.py": "a85e7d0cb7f5caf2615c6d0861e695102f3c0e0a19ddae29efb1e726297aa67c",
+      "verl/utils/reward_score/prime_code/testing_util.py": "00249b6dad851ec4eef9c955edf628a900efe009f988e601eeb12d1c879cd191"
+    }
+  },
+  "livecodebench": {
+    "repo": "https://github.com/LiveCodeBench/LiveCodeBench",
+    "commit": "28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24",
+    "files": {
+      "lcb_runner/evaluation/testing_util.py": "b7cb6a8a69807bb868150a61742e25d7bb5328bbe01d514471b6ec43c9fa9ed2",
+      "lcb_runner/evaluation/compute_code_generation_metrics.py": "073f388cc78bf0eb0ad35eaeb8bb509c0a3664963e5305d2be13d6b6eb6f3d21"
+    }
+  },
+  "rllm": {
+    "repo": "https://github.com/rllm-org/rllm",
+    "commit": "4e828c81680e5a85b638ceedeaf09d1e90109ca8",
+    "files": {
+      "rllm/rewards/code_reward.py": "439c0157828ad77fe63eb3502927c75bef8459acfea7dbb0df5cdfbadaf8d18e",
+      "rllm/rewards/code_utils/livecodebench.py": "56663d6eac3ef77f11999c5b1a0052e4fea52234ffd7b34a0b51c367f4ea7fa7"
+    }
+  },
+  "bigcodebench": {
+    "repo": "https://github.com/bigcode-project/bigcodebench",
+    "commit": "09dd993f46c3fbf3a799465bb96d524edcb0b199",
+    "files": {
+      "bigcodebench/eval/__init__.py": "d5fd553559ac1b76659ebc32ae30e3e779449ecd31c5201f2301319ceeee01fe",
+      "bigcodebench/eval/utils.py": "9061f74fe937c4eb7a1b2bc423f7acab547ae01804d5e25933e2aa8a3cc2d685"
+    }
+  },
+  "open-r1": {
+    "repo": "https://github.com/huggingface/open-r1",
+    "commit": "5b6ff22b3fb7aa069c54866e517f39dfc3160e09",
+    "files": {
+      "src/open_r1/rewards.py": "cbd7bf97e2befb37091258c14a343d182be889fdb5d9eab1e86a7dd3934614d3"
+    }
+  }
+}

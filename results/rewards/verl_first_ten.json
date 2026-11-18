@@ -1,0 +1,128 @@
+{
+ "toy": {
+  "score": 1.0,
+  "full_check": false
+ },
+ "full_reward_but_fails_full_check": [
+  {
+   "task_id": "deepcoder_taco/8",
+   "tests": 106
+  },
+  {
+   "task_id": "deepcoder_taco/90",
+   "tests": 132
+  },
+  {
+   "task_id": "deepcoder_taco/158",
+   "tests": 128
+  },
+  {
+   "task_id": "deepcoder_taco/213",
+   "tests": 202
+  },
+  {
+   "task_id": "deepcoder_taco/665",
+   "tests": 313
+  },
+  {
+   "task_id": "deepcoder_taco/792",
+   "tests": 384
+  },
+  {
+   "task_id": "deepcoder_taco/1530",
+   "tests": 41
+  },
+  {
+   "task_id": "deepcoder_primeintellect/118",
+   "tests": 51
+  },
+  {
+   "task_id": "deepcoder_primeintellect/509",
+   "tests": 255
+  },
+  {
+   "task_id": "deepcoder_primeintellect/536",
+   "tests": 101
+  },
+  {
+   "task_id": "deepcoder_primeintellect/666",
+   "tests": 83
+  },
+  {
+   "task_id": "deepcoder_primeintellect/704",
+   "tests": 119
+  },
+  {
+   "task_id": "deepcoder_primeintellect/807",
+   "tests": 103
+  },
+  {
+   "task_id": "deepcoder_primeintellect/927",
+   "tests": 70
+  },
+  {
+   "task_id": "deepcoder_primeintellect/1007",
+   "tests": 101
+  },
+  {
+   "task_id": "deepcoder_primeintellect/1092",
+   "tests": 88
+  },
+  {
+   "task_id": "deepcoder_primeintellect/1434",
+   "tests": 86
+  },
+  {
+   "task_id": "deepcoder_primeintellect/1455",
+   "tests": 80
+  },
+  {
+   "task_id": "deepcoder_primeintellect/1461",
+   "tests": 103
+  },
+  {
+   "task_id": "deepcoder_primeintellect/1674",
+   "tests": 101
+  },
+  {
+   "task_id": "deepcoder_primeintellect/1957",
+   "tests": 102
+  },
+  {
+   "task_id": "deepcoder_primeintellect/2714",
+   "tests": 122
+  },
+  {
+   "task_id": "deepcoder_primeintellect/2736",
+   "tests": 101
+  },
+  {
+   "task_id": "deepcoder_primeintellect/2741",
+   "tests": 103
+  },
+  {
+   "task_id": "deepcoder_primeintellect/2758",
+   "tests": 205
+  },
+  {
+   "task_id": "deepcoder_primeintellect/2766",
+   "tests": 114
+  },
+  {
+   "task_id": "deepcoder_primeintellect/2939",
+   "tests": 76
+  },
+  {
+   "task_id": "deepcoder_primeintellect/2940",
+   "tests": 106
+  },
+  {
+   "task_id": "deepcoder_primeintellect/3187",
+   "tests": 103
+  }
+ ],
+ "eurus_more_than_10_tests": [
+  679,
+  1024
+ ]
+}
