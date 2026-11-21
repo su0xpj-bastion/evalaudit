@@ -19,7 +19,7 @@ It covers HumanEval (164 tasks) and MBPP (378 tasks), using both the original te
 
 Numbers in parentheses in the full tables are 95% confidence intervals.
 
-The full write-up is in [`WRITEUP.md`](WRITEUP.md), and every table is in [`results/FINDINGS.md`](results/FINDINGS.md). I reported all four problems upstream: [#333](https://github.com/evalplus/evalplus/issues/333), [#334](https://github.com/evalplus/evalplus/issues/334), [#335](https://github.com/evalplus/evalplus/issues/335), [#336](https://github.com/evalplus/evalplus/issues/336).
+The full write-up is in [`WRITEUP.md`](WRITEUP.md), and every table is in [`results/FINDINGS.md`](results/FINDINGS.md). I reported all four problems upstream: [#333](https://github.com/evalplus/evalplus/issues/333), [#334](https://github.com/evalplus/evalplus/issues/334), [#335](https://github.com/evalplus/evalplus/issues/335), [#336](https://github.com/evalplus/evalplus/issues/336). Their status and the next steps (with owners and due dates) are tracked in [`docs/UPSTREAM_FOLLOWTHROUGH.md`](docs/UPSTREAM_FOLLOWTHROUGH.md).
 
 ## Part two: RL code rewards
 
